@@ -113,13 +113,13 @@ def main():
 
     # cache = dict()
 
-    toWrite = open("test.txt", "w+")
-
     returnedCards = []
 
     for x in cardList:
         # Pull from Scryfall
-        # if(x not in cache.keys()):
+
+        # TODO integrate with requests-cache more effictively, ala rate limiting
+        # TODO flag to wipe cache
         queryString = 'http://api.scryfall.com/cards/named?fuzzy=' + urllib.parse.quote_plus(x)
         request = requests.get(queryString)
         if request.status_code != 200:
@@ -133,6 +133,7 @@ def main():
         time.sleep(0.1)
 
 
+    # TODO Print these guys out more intelligently
 
     for x in range(0, len(returnedCards), 4):
         workingFile= open("out{0}.txt".format(x), "w+")
@@ -150,6 +151,5 @@ def main():
 
         workingFile.close()
 
-
-
-    toWrite.close()
+if __name__ == "__main__":
+    main()
