@@ -48,7 +48,7 @@ def returnCard(inputJSON):
     if 26 - len(inputJSON['name']) - len(inputJSON['mana_cost']) < 0:
         inputJSON['name'] = re.sub('[AEIOUaeiou]', '', inputJSON['name'][::-1], (-1 * (26 - len(inputJSON['name']) - len(inputJSON['mana_cost']))))[::-1]
 
-    toReturn += '| {0}{1}{2} |\n'.format(inputJSON['name'], (26 - len(inputJSON['name']) - len(inputJSON['mana_cost'])) * ' ', inputJSON['mana_cost'] )
+    toReturn += '|{3}{0}{1}{2}{4}|\n'.format(inputJSON['name'], (26 - len(inputJSON['name']) - len(inputJSON['mana_cost'])) * ' ', inputJSON['mana_cost'], '' if len(inputJSON['name']) + 1 + len(inputJSON['mana_cost']) > 26 else ' ',  '' if len(inputJSON['name']) + 1 + len(inputJSON['mana_cost']) > 27 else ' ')
     toReturn += '|' + ('-' * 28) + '|\n'
 
     availableLines = 16
