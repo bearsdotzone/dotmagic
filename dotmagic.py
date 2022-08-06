@@ -4,6 +4,8 @@ import urllib.parse
 import json
 import requests_cache
 import re
+from card import card
+import sys
 
 
 # Format the oracle text into appropriate paragraph breaks
@@ -96,7 +98,15 @@ def returnCard(inputJSON):
     toReturn += '\\' + ('-' * 28) + '/\n'
     return toReturn.replace('{', '[').replace('}', ']')
 
+
 def main():
+
+    cardWidth = 30
+    cardHeight = 25
+
+    testCard = card(cardWidth, cardHeight)
+
+
     # TODO argument
     f = open("input.txt", "r")
 
@@ -126,6 +136,7 @@ def main():
             print('non-critical error on', x, 'code', request.status_code)
         # cache[x] = json.loads(request.text)
         thisCard = returnCard(json.loads(request.text))
+        testCard.setCard(json.loads(request.text))
         # print(thisCard)
         # toWrite.write(thisCard)
         returnedCards += [thisCard]
