@@ -1,2 +1,2 @@
 requests-cache==0.9.4
-urllib3==2.5.0
+urllib3==2.6.0
